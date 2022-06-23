@@ -16,7 +16,7 @@ input {
 
 body {
     line-height: 1.4;
-    color: #333333;
+    color: white;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -93,7 +93,7 @@ button:disabled {
     height: 100vh;
     color: white;
     background: #333744;
-    width: 225px;
+    width: 0px;
     overflow-y: scroll;
 }
 

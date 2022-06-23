@@ -9,6 +9,11 @@ const $messages = document.querySelector("#messages");
 
 // Templates
 const messageTemplate = document.querySelector("#message-template").innerHTML;
+
+const myTemplate = []
+myTemplate[0] = document.querySelector("#message-template").innerHTML;
+myTemplate[1] = document.querySelector("#my-template").innerHTML;
+
 const locationMessageTemplate = document.querySelector("#location-message-template").innerHTML;
 const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
 
@@ -18,33 +23,31 @@ const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }
 const autoscroll = () => {
   // New message element
   const $newMessage = $messages.lastElementChild;
-
   // Height of the new message
   const newMessageStyles = getComputedStyle($newMessage);
   const newMessageMargin = parseInt(newMessageStyles.marginBottom);
   const newMessageHeight = $newMessage.offsetHeight + newMessageMargin;
-
   // Visible height
   const visibleHeight = $messages.offsetHeight;
-
   // Height of messages container
   const containerHeight = $messages.scrollHeight;
-
   // How far have I scrolled?
   const scrollOffset = $messages.scrollTop + visibleHeight;
-
-  if (containerHeight - newMessageHeight <= scrollOffset) {
-    $messages.scrollTop = $messages.scrollHeight;
-  }
+  $messages.scrollTop = $messages.scrollHeight;
 };
 
 socket.on("message", message => {
-  const html = Mustache.render(messageTemplate, {
+  let i=0;
+
+  if (username === message.username) {
+    i=1;
+  }
+
+  let html = Mustache.render(myTemplate[i], {
     username: message.username,
     message: message.text,
-    createdAt: moment(message.createdAt).format("h:mm a")
+    createdAt: moment(message.createdAt).format("a h:mm")
   });
-
   $messages.insertAdjacentHTML("beforeend", html);
   autoscroll();
 });
@@ -56,7 +59,6 @@ socket.on("locationMessage", message => {
     url: message.url,
     createdAt: moment(message.createdAt).format("h:mm a")
   });
-
   $messages.insertAdjacentHTML("beforeend", html);
 });
 

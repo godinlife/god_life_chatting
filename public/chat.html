@@ -12,31 +12,39 @@
                 <div id="messages" class="chat__messages"></div>
 
                 <div class="compose">
-                    <form id="message-form" action="">
+                    <form id="message-form" action="" style="width: 100%">
                         <input name="message" type="text" placeholder="Message" required autocomplete="off">
-                        <button>Send</button>
+                        <button hidden>Send</button>
                     </form>
-                    <button id="send-location">Send location</button>
+                    <button id="send-location" hidden>Send location</button>
                 </div>
             </div>
         </div>
 
         <script id="message-template" type="text/html">
-            <div class="message">
-                <p>
-                    <span class="message__name">{{username}}</span>
-                    <span class="message__meta">{{createdAt}}</span>
-                </p>
-                <p>{{message}}</p>
+            <div style="">
+              {{username}}
+              <img src="./img/download.jpg" style="height: 45px;width: 45px; object-fit: cover;border-radius: 10px 10px 10px 10px;float:left;margin-right: 10px"/><br>
+              <p style="background: #6b47b8;padding: 6px;border-radius: 4px 4px 4px 4px;color: white;display:inline-block;">{{message}}</p>
+              <span class="message__meta">{{createdAt}}</span>
             </div>
+            <br>
+        </script>
+
+        <script id="my-template" type="text/html">
+          <div style="float: right;">
+            <div style="float:left;background: #6b47b8;padding: 6px;border-radius: 4px 4px 4px 4px"><p style="color: white">{{message}}<p></div><br>
+            <div class="message__meta" style="float: bottom;color: white"><p style="color: #333333">{{createdAt}}</p></div>
+          </div>
+          <br><br><br>
         </script>
 
         <script id="location-message-template" type="text/html">
             <div class="message">
-                <p>
-                    <span class="message__name">{{username}}</span>
-                    <span class="message__meta">{{createdAt}}</span>
-                </p>
+
+                <span class="message__name">{{username}}</span>
+                <span class="message__meta">{{createdAt}}</span>
+
                 <p><a href="{{url}}" target="_blank">My current location</a></p>
             </div>
         </script>
