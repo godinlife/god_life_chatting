@@ -3,7 +3,20 @@
     <head>
         <title>Chat App</title>
         <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <style>
+          p {
+            word-break:break-all;
+          }
+          img {
+            height: 3rem;
+            width: 3rem;
+            object-fit: cover;
+            border-radius: 2rem;
+            float:left;
+            margin-right: 10px;
+          }
+        </style>
     </head>
     <body>
         <div class="chat">
@@ -12,31 +25,69 @@
                 <div id="messages" class="chat__messages"></div>
 
                 <div class="compose">
+                  <div id="compose-container">
                     <form id="message-form" action="" style="width: 100%">
-                        <input name="message" type="text" placeholder="Message" required autocomplete="off">
-                        <button hidden>Send</button>
+                      <input name="message"
+                             type="text"
+                             placeholder="Please enter a message!"
+                             required autocomplete="off"
+                      >
+                      <button hidden>Send</button>
                     </form>
+                  </div>
+
                     <button id="send-location" hidden>Send location</button>
                 </div>
             </div>
         </div>
-
+        <!-- another -->
         <script id="message-template" type="text/html">
-            <div style="">
-              {{username}}
-              <img src="./img/download.jpg" style="height: 45px;width: 45px; object-fit: cover;border-radius: 10px 10px 10px 10px;float:left;margin-right: 10px"/><br>
-              <p style="background: #6b47b8;padding: 6px;border-radius: 4px 4px 4px 4px;color: white;display:inline-block;">{{message}}</p>
-              <span class="message__meta">{{createdAt}}</span>
+            <div class="messagebox-container" style="padding-right: 20%">
+              <img id="messagebox-profile" src="./img/download.jpg"/>
+              <div id="messagebox-ui">
+                <p style="color: black; font-size: medium">{{username}}</p>
+                <div class="messagebox-contents">
+                  <div>
+                    <p style="background: #5bdeb7;
+                              padding: 8px 20px 8px 20px;
+                              border-radius: 0 13px 13px 13px;
+                              color: white;
+                              display:inline-block;">
+                      {{message}}
+                    </p>
+                    <span class="message__meta" style="margin-left: 5px">{{createdAt}}</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <br>
         </script>
 
+        <!-- me -->
         <script id="my-template" type="text/html">
-          <div style="float: right;">
-            <div style="float:left;background: #6b47b8;padding: 6px;border-radius: 4px 4px 4px 4px"><p style="color: white">{{message}}<p></div><br>
-            <div class="message__meta" style="float: bottom;color: white"><p style="color: #333333">{{createdAt}}</p></div>
+          <div class="messagebox-container"
+               style="flex-direction: row-reverse; padding-left: 25%; margin-bottom: 12px">
+            <div class="messagebox-contents"
+                 style="flex-direction: row-reverse;">
+              <div id="div-hell"
+                    style="display: flex; flex-direction: Column; ">
+                <div id="messagebox-msg">
+                  <p style="background: #2248ba;
+                  display: inline-flex;
+                  flex-direction: row-reverse;
+                  padding: 8px 20px 8px 23px;
+                  border-radius: 13px 0 13px 13px ;
+                  color: white;
+                  display:inline-block;">
+                    {{message}}
+                  </p>
+                </div>
+                <div id="messagebox-at">
+                  <span class="message__meta" style="height: auto; margin-left: 5px">{{createdAt}}</span>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <br><br><br>
         </script>
 
         <script id="location-message-template" type="text/html">

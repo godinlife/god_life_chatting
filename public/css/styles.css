@@ -1,4 +1,5 @@
 /* General Styles */
+@charset "utf-8";
 
 * {
     margin: 0;
@@ -84,7 +85,6 @@ button:disabled {
 }
 
 /* Chat Page Layout */
-
 .chat {
     display: flex;
 }
@@ -94,25 +94,50 @@ button:disabled {
     color: white;
     background: #333744;
     width: 0px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 /* Chat styles */
+#compose-container {
+  width: 100%;
+  text-align: center;
+  margin: 15px 5px 5px 5px;
+}
 
 .chat__main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
+    max-height: 200vh;
 }
 
 .chat__messages {
     flex-grow: 1;
     padding: 24px 24px 0 24px;
-    overflow-y: scroll;
+    overflow-y: inherit;
 }
 
 /* Message Styles */
+.messagebox-container {
+  display: flex;
+  min-height: 5rem;
+  height: auto;
+  width: 100%;
+  padding: 5px 5px 5px 5px;
+}
+
+.messagebox-contents {
+  display: flex;
+  width: auto;
+}
+
+#messagebox-ui {
+  overflow: auto;
+}
+#messagebox-username {
+  overflow:hidden;
+  height:auto;
+}
 
 .message {
     margin-bottom: 16px;
@@ -133,10 +158,15 @@ button:disabled {
     color: #0070cc;
 }
 
-/* Message Composition Styles */
+#messagebox-br {
 
+}
+
+/* Message Composition Styles */
 .compose {
+    width: 100%;
     display: flex;
+    background-color: #ffffff;
     flex-shrink: 0;
     margin-top: 16px;
     padding: 24px;
@@ -149,10 +179,11 @@ button:disabled {
 }
 
 .compose input {
-    border: 1px solid #eeeeee;
+    border: 1px solid #c2c2c2;
+    border-radius: 3px;
+
     width: 100%;
     padding: 12px;
-    margin: 0 16px 0 0;
     flex-grow: 1;
 }
 
